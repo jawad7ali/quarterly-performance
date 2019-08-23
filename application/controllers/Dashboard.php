@@ -84,6 +84,9 @@ class Dashboard extends MY_Controller{
 		if($this->session->userdata('user_type') == 'Member' && $data['dep_member']['User_type'] == 'Member'){
 			$eval_type= 'mtm';
 		}
+		if($this->session->userdata('user_type') == 'Member' && $data['dep_member']['User_type'] == 'CEO'){
+			$eval_type= 'mtl';
+		}
 		if($this->session->userdata('user_type') == 'TeamLead' && $data['dep_member']['User_type'] == 'Member'){
 			$eval_type= 'ltm';
 		}
@@ -96,6 +99,8 @@ class Dashboard extends MY_Controller{
 		if($this->session->userdata('user_type') == 'TeamLead' && $data['dep_member']['User_type'] == 'SiteLead'){
 			$eval_type= 'mtl';
 		}
+		// echo $data['dep_member']['User_type'];
+		// exit();
 		$data['selected_factors_list'] = $this->rating_model->get_selected_factors($eval_id,$eval_type);
 		//echo $this->db->last_query();
 		$this->show_view('member/evaluate-form', $data);
